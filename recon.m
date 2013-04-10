@@ -43,7 +43,9 @@ figure; imagescn(abs(cat(2,gscomb,db0comb,db0comb-gscomb)),[],[],[],3);
 % sense recon
 coilprojw=[1 1 0];
 cmask=zeros(size(udata_decorr)); %%dummy
-[v,delta,ne]=cgsense(udata_decorr,s_decorr,supp,cmask,phaseref,kspace2imspace,imspace2kspace,600,gs,db0,coilprojw,false);
+
+b0=zeros(nkx,nky,nkz);
+[v,delta,ne]=cgsense(udata_decorr,s_decorr,supp,cmask,phaseref,kspace2imspace,imspace2kspace,600,gscomb,b0,coilprojw,false);
 
 % phasew=1;
 %phase recon

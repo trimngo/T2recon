@@ -10,3 +10,5 @@ Just rate 2, 200 iterations
 **Run rate 4**
 {{./pasted_image001.png?width=600}}
 rate 4, 600 iterations (ignore the background)
+
+

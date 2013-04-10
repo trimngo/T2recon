@@ -1,7 +1,9 @@
-function [v,delta,ne]=cgsense(m,s,supp,dcf,kspace2imspace,imspace2kspace,maxits,gs,b0,debug)
+function [v,delta,ne]=cgsense(m,s,supp,csupp,phaseref,kspace2imspace,imspace2kspace,maxits,gs,b0,coilprojw,debug)
+%%
 % debug=true;
 %initiate
 I=1/sqrt(sum(abs(s).^2,4)); %set this to all ones if don't want intensity correction.
+dcf=ones(size(m));
 a=I.*sum(kspace2imspace(dcf.*m).*conj(s),4);
 % a=sum(kspace2imspace(m).*conj(s),4);
 [nkx nky nkz ncoils]=size(m);

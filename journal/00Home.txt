@@ -4,6 +4,8 @@ Creation-Date: 2013-04-10T16:49:04-04:00
 
 ====== 00Home ======
 Created Wednesday 10 April 2013
+TODO
+Recon phantom, no calibration region, R4 normal SENSE unfolding
 
 [[04102013_2]] : Recon phantom, no calibration region, R4 pocsense
 [[04102013_3]] : Recon phantom, no calibration region, R4 cgsense

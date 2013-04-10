@@ -53,9 +53,9 @@ gs=kspace2imspace(data_decorr);
 %% compare gs and fully samp recon
 I=1/(sum(abs(s_decorr).^2,4));
 %combine coils
-vcomb=sum(v.*conj(s_decorr),4).*I;
+% vcomb=sum(v.*conj(s_decorr),4).*I;
 gscomb=sum(gs.*conj(s_decorr),4).*I;
-figure; imagescn(abs(cat(2,gscomb,vcomb,vcomb-gscomb)),[],[],[],3);
+figure; imagescn(abs(cat(2,gscomb,v,v-gscomb)),[],[],[],3);
 
 figure;
 subplot(2,1,1); plot(ne);
