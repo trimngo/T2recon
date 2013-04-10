@@ -19,7 +19,7 @@ cres=[20 10]; %fullly sampled center of kspace
 % [supp]=gensupp_gauss(nkx,nky,nkz,ncoils,nechos,mask,rate,cres);
 
 supp_center=zeros(size(data));
-reg_rate=[2 1];
+reg_rate=[2 2];
 [supp]=gensupp_reg(nkx,nky,nkz,ncoils,nechos,reg_rate,supp_center);
 % 
 % if dataind==1
@@ -48,6 +48,8 @@ s=estcoilsens(data,ones(size(data)),kspace2imspace); %ideal coil sensitivity
 %% recon
 [v,delta,ne]=recon(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
 
+%% gs recon
+gs=kspace2imspace(data_decorr);
 %% compare gs and fully samp recon
 I=1/(sum(abs(s_decorr).^2,4));
 %combine coils
