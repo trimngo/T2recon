@@ -4,11 +4,11 @@ addpath('utilities');
 %% load in data
 dataind=1;
 [data,data_noise,TE_vals,mask,cmask]=loaddata(dataind);
-data=data(:,:,:,:,1);
-data_noise=data_noise(:,:,:,:,1);
-mask=mask(:,:,:,:,1);
-cmask=cmask(:,:,:,:,1);
-nechos=1;
+% data=data(:,:,:,:,1);
+% data_noise=data_noise(:,:,:,:,1);
+% mask=mask(:,:,:,:,1);
+% cmask=cmask(:,:,:,:,1);
+% nechos=1;
 [nkx nky nkz ncoils nechos]=size(data);
 
 %% load undersampling pattern and window
@@ -50,6 +50,7 @@ s=estcoilsens(data,ones(size(data)),kspace2imspace); %ideal coil sensitivity
 
 %% gs recon
 gs=kspace2imspace(data_decorr);
+
 %% compare gs and fully samp recon
 I=1/(sum(abs(s_decorr).^2,4));
 %combine coils

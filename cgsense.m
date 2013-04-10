@@ -6,10 +6,10 @@ I=1/sqrt(sum(abs(s).^2,4)); %set this to all ones if don't want intensity correc
 dcf=ones(size(m));
 a=I.*sum(kspace2imspace(dcf.*m).*conj(s),4);
 % a=sum(kspace2imspace(m).*conj(s),4);
-[nkx nky nkz ncoils]=size(m);
+[nkx nky nkz ncoils nechos]=size(m);
 % b=zeros(nkx,nky,nkz);
 b=b0;
-r=a-I.*sum(kspace2imspace(dcf.*imspace2kspace(s.*repmat(I.*b0,[1 1 1 ncoils])).*supp).*conj(s),4); %modified from original paper
+r=a-I.*sum(kspace2imspace(dcf.*imspace2kspace(s.*repmat(I.*b0,[1 1 1 ncoils 1])).*supp).*conj(s),4); %modified from original paper
 
 if debug
     fh1=figure;

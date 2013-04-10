@@ -27,7 +27,7 @@ gs=kspace2imspace(data_decorr);
 %% reconstruct with different phase weightings
 I=1/(sum(abs(s_decorr).^2,4));
 figure;imagescn(abs(gs),[],[],[],3);
-db0=kspace2imspace(udata_decorr(:,:,:,:,1));
+db0=kspace2imspace(udata_decorr);
 
 %combine coils
 db0comb=sum(db0.*conj(s_decorr),4).*I;
@@ -44,7 +44,7 @@ figure; imagescn(abs(cat(2,gscomb,db0comb,db0comb-gscomb)),[],[],[],3);
 coilprojw=[1 1 0];
 cmask=zeros(size(udata_decorr)); %%dummy
 
-b0=zeros(nkx,nky,nkz);
+b0=zeros(nkx,nky,nkz,1,nechos);
 [v,delta,ne]=cgsense(udata_decorr,s_decorr,supp,cmask,phaseref,kspace2imspace,imspace2kspace,600,gscomb,b0,coilprojw,false);
 
 % phasew=1;
