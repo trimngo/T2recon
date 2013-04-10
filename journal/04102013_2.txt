@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-04-10T15:40:28-04:00
+
+====== 04102013 2 ======
+Created Wednesday 10 April 2013
+
+Recon phantom, no calibration region, SENSE R4
+
+{{./screenshot_2013-04-10-163750.png?width=600}}T
+This is just rate 2.
