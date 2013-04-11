@@ -7,6 +7,9 @@ Created Wednesday 10 April 2013
 TODO
 Recon phantom, no calibration region, R4 normal SENSE unfolding
 
+Compare R4 cgsense (all echos) with ZF recon
+
 [[04102013_2]] : Recon phantom, no calibration region, R4 pocsense
 [[04102013_3]] : Recon phantom, no calibration region, R4 cgsense
 [[04102013_4]] : Recon phantom, no calibration region, R4 cgsense (all echos)
+[[04112013_1]] : Recon phantom, no calibration region, ZF recon (all echos)

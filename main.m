@@ -1,3 +1,4 @@
+clear all;
 %% paths
 addpath('mritools');
 addpath('utilities');
@@ -46,7 +47,9 @@ s=estcoilsens(data,ones(size(data)),kspace2imspace); %ideal coil sensitivity
 [udata_decorr,s_decorr]=whiten(udata,s,data_noise);
 
 %% recon
-[v,delta,ne]=recon(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
+cgrecon=Recon_cgsense;
+[v,delta,ne]=cgrecon.run(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
+% recon(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
 
 %% gs recon
 gs=kspace2imspace(data_decorr);
