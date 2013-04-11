@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-04-11T12:43:02-04:00
+
+====== 04112013 1 ======
+Created Thursday 11 April 2013
+
+{{./screenshot_2013-04-11-124300.png?width=600}}
+ZF recon (all echos), normalized error is 0.7174

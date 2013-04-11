@@ -6,12 +6,26 @@ classdef Recon_base
     end
     
     methods (Abstract)
-        [v,delta,ne]=runalg(m,s,supp,csupp,phaseref,kspace2imspace,imspace2kspace,maxits,gs,b0,coilprojw,debug)
+        [v,vcomb,delta,ne]=runalg(m,s,supp,csupp,phaseref,kspace2imspace,imspace2kspace,maxits,gs,b0,coilprojw,debug)
     end
     
+    methods (Static)
+        function vcomb=combcoils(v,s)
+            I=1/(sum(abs(s).^2,4));
+            vcomb=sum(v.*conj(s),4).*I;
+        end
+        
+        function v=decombcoils(vcomb,s)
+            v=s.*repmat(vcomb,[1 1 1 ncoils]);
+        end
+        
+        function ne=computeNE(v,gs)
+            ne=norm(vect(v-gs))/norm(gs(:));
+        end
+    end
     
     methods
-        function [v,delta,ne]=run(my,udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace)
+        function [v,vcomb,delta,ne]=run(my,udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace)
             %% setup
             [nkx,nky,nkz,ncoils,nechos]=size(udata_decorr);
             % set(0,'DefaultFigureVisible','off');  % all subsequent figures "off"
@@ -58,7 +72,7 @@ classdef Recon_base
             
             %% recon
             b0=zeros(nkx,nky,nkz,1,nechos);
-            [v,delta,ne]=my.runalg(udata_decorr,s_decorr,supp,cmask,phaseref,kspace2imspace,imspace2kspace,600,gscomb,b0,coilprojw,false);
+            [v,vcomb,delta,ne]=my.runalg(udata_decorr,s_decorr,supp,cmask,phaseref,kspace2imspace,imspace2kspace,600,gscomb,b0,coilprojw,false);
             
             % phasew=1;
             %phase recon

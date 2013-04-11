@@ -47,9 +47,11 @@ s=estcoilsens(data,ones(size(data)),kspace2imspace); %ideal coil sensitivity
 [udata_decorr,s_decorr]=whiten(udata,s,data_noise);
 
 %% recon
-cgrecon=Recon_cgsense;
-[v,delta,ne]=cgrecon.run(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
-% recon(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
+% cgrecon=Recon_cgsense;
+% [v,delta,ne]=cgrecon.run(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
+
+zfrecon=Recon_zf;
+[v,vcomb,delta,ne]=zfrecon.run(udata_decorr,s_decorr,supp,mask,kwin,data_decorr,kspace2imspace,imspace2kspace);
 
 %% gs recon
 gs=kspace2imspace(data_decorr);
@@ -59,7 +61,9 @@ I=1/(sum(abs(s_decorr).^2,4));
 %combine coils
 % vcomb=sum(v.*conj(s_decorr),4).*I;
 gscomb=sum(gs.*conj(s_decorr),4).*I;
-figure; imagescn(abs(cat(2,gscomb,v,v-gscomb)),[],[],[],3);
+
+figure; imagescn(abs(cat(2,gs,v,v-gs)),[],[],[],3);
+figure; imagescn(abs(cat(2,gscomb,vcomb,vcomb-gscomb)),[],[],[],3);
 
 figure;
 subplot(2,1,1); plot(ne);

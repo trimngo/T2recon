@@ -6,7 +6,7 @@ classdef Recon_cgsense < Recon_base
     end
     
     methods
-        function [v,delta,ne]=runalg(my,m,s,supp,csupp,phaseref,kspace2imspace,imspace2kspace,maxits,gs,b0,coilprojw,debug)
+        function [v,vcomb,delta,ne]=runalg(my,m,s,supp,csupp,phaseref,kspace2imspace,imspace2kspace,maxits,gs,b0,coilprojw,debug)
             %%
             % debug=true;
             %initiate
@@ -27,7 +27,7 @@ classdef Recon_cgsense < Recon_base
                 delta(i)=(r(:)'*r(:))/(a(:)'*a(:));
                 
                 v=I.*b;
-                ne(i)=norm(vect(v-gs))/norm(gs(:));
+                ne(i)=my.computeNE(v,gs);
                 
                 fprintf('Iteration %i: delta=%d, error=%d\n',i,delta(i),ne(i));
                 
@@ -48,6 +48,9 @@ classdef Recon_cgsense < Recon_base
                 r=r-((r(:)'*r(:))/(a(:)'*q(:)))*q;
                 a=r+((r(:)'*r(:))/(r(:)'*r(:)))*a;
             end
+            
+            vcomb=v;
+            v=s.*repmat(vcomb,[1 1 1 ncoils]);
         end
     end
 end
